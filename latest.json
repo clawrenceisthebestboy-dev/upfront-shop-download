@@ -1,0 +1,9 @@
+{
+  "version": "1.4.0",
+  "url": "https://shop.upfrontautorepair207.com/UpFrontShopSetup-1.4.0.exe",
+  "sha256": "PASTE_SHA256_HERE_AFTER_BUILDING",
+  "notes": "Signed auto-updater, shop logo integration, VIN in records, 3.5% pricing policy.",
+  "required": false,
+  "min_version": "1.0.0",
+  "signature": "PASTE_SIGNATURE_HERE_AFTER_RUNNING_SIGN_MANIFEST_PY"
+}

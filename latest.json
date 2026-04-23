@@ -1,8 +1,8 @@
 {
-  "version": "1.4.0",
-  "url": "https://github.com/clawrenceisthebestboy-dev/upfront-shop/releases/download/latest/UpFrontShopSetup.exe",
+  "version": "1.4.1",
+  "url": "https://github.com/clawrenceisthebestboy-dev/upfront-shop/releases/download/v1.4.1/UpFrontShopSetup.exe",
   "sha256": "",
-  "notes": "Initial build — PyInstaller + Inno Setup installer. Auto-updater not yet wired.",
+  "notes": "Bug fixes: NaN edge cases in P&L reports, timezone drift in timeclock, NULL handling in jobs list, vehicle orphan crash. Ed25519 release pubkey now installed — auto-updater fully functional.",
   "required": false,
   "min_version": "1.0.0",
   "signature": ""

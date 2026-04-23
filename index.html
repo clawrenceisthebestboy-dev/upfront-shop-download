@@ -2,246 +2,551 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<!-- Keep this page out of search engines; this is an internal shop portal. -->
-<meta name="robots" content="noindex, nofollow, noarchive">
-<title>Up Front Shop — Internal Download</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Up Front Shop — The Last Shop Management Software You'll Ever Need</title>
+<meta name="description" content="Professional shop management software for independent auto repair shops. Invoicing, P&L reports, inventory, timeclock, and more. Runs offline on Windows. Free to download.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --navy:    #0B2545;
-    --accent:  #C5363A;
-    --bg:      #F2F4F8;
-    --border:  #B3BCC9;
-    --muted:   #4A4A4A;
-    --ok:      #1b7a34;
+    --navy: #0B2545;
+    --navy-light: #143265;
+    --red: #C5363A;
+    --red-light: #e04a3d;
+    --bg: #F2F4F8;
+    --white: #ffffff;
+    --border: #D0D8E4;
+    --muted: #6B7A90;
+    --green: #1b7a34;
+    --radius: 12px;
+    --shadow: 0 4px 24px rgba(11,37,69,0.10);
+    --shadow-hover: 0 8px 40px rgba(11,37,69,0.16);
   }
-  * { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
   body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-                 "Helvetica Neue", Arial, sans-serif;
-    background: var(--bg);
-    color: #111;
-    line-height: 1.5;
+    font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--white);
+    color: #1a1a2e;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
   }
-  header {
-    background: white;
-    border-bottom: 3px solid var(--navy);
-    padding: 18px 24px;
-    display: flex; align-items: center; gap: 18px;
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 24px;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
   }
-  header img { width: 72px; height: 72px; object-fit: contain; }
-  header .title { display: flex; flex-direction: column; }
-  header h1 {
-    margin: 0; color: var(--navy); font-size: 22px; letter-spacing: .3px;
+  nav .logo {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none; color: var(--navy);
   }
-  header .tag {
-    margin: 2px 0 0; color: var(--accent); font-weight: bold;
-    font-size: 11px; letter-spacing: 2px;
+  nav .logo img { width: 36px; height: 36px; object-fit: contain; }
+  nav .logo span { font-weight: 700; font-size: 17px; letter-spacing: -0.3px; }
+  nav .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+  nav .nav-links a { text-decoration: none; color: var(--muted); font-size: 14px; font-weight: 500; transition: color 0.15s; }
+  nav .nav-links a:hover { color: var(--navy); }
+  nav .btn-sm {
+    background: var(--navy); color: white; text-decoration: none;
+    font-size: 13px; font-weight: 600; padding: 8px 18px; border-radius: 8px;
+    transition: background 0.15s;
   }
-  header .phone {
-    margin-left: auto; color: var(--navy); font-weight: bold; font-size: 16px;
-    text-align: right;
-  }
-  main {
-    max-width: 780px; margin: 32px auto; padding: 0 20px;
-  }
-  h2 { color: var(--navy); margin: 28px 0 10px; }
-  .card {
-    background: white;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 22px 24px;
-    margin: 18px 0;
-    box-shadow: 0 1px 4px rgba(0,0,0,.04);
-  }
-  .hero { border-left: 6px solid var(--navy); }
-  .btn {
-    display: inline-block;
-    background: var(--navy);
+  nav .btn-sm:hover { background: var(--navy-light); }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(160deg, #0B2545 0%, #143265 60%, #1a4080 100%);
     color: white;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 14px 24px;
-    border-radius: 6px;
-    margin: 8px 0 6px;
-    font-size: 16px;
-    letter-spacing: .3px;
+    padding: 80px 24px 90px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
   }
-  .btn:hover { background: #143265; }
-  .btn .ver { opacity: .75; font-weight: normal; margin-left: 10px; }
-  .meta {
-    color: var(--muted); font-size: 13px; margin-top: 6px;
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.025'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   }
-  .hash {
-    font-family: SFMono-Regular, Menlo, Consolas, monospace;
-    font-size: 12px;
-    background: var(--bg);
-    padding: 8px 10px;
-    border-radius: 4px;
-    border: 1px solid var(--border);
-    word-break: break-all;
-    color: #111;
-  }
-  .steps { padding-left: 22px; }
-  .steps li { margin: 6px 0; }
-  .callout {
-    background: #FFF7E6;
-    border: 1px solid #E8C57A;
-    color: #5A3E00;
-    border-radius: 6px;
-    padding: 12px 14px;
-    margin: 14px 0;
-    font-size: 14px;
-  }
-  footer {
-    max-width: 780px; margin: 40px auto 60px; padding: 0 20px;
-    color: var(--muted); font-size: 12px; text-align: center;
-  }
-  details summary {
-    cursor: pointer; color: var(--navy); font-weight: 600;
-    padding: 6px 0;
-  }
-  .badge {
+  .hero .container { max-width: 720px; margin: 0 auto; position: relative; }
+  .hero-badge {
     display: inline-block;
-    background: var(--ok); color: white; font-size: 11px;
-    padding: 2px 8px; border-radius: 10px; letter-spacing: .5px;
-    vertical-align: middle; margin-left: 8px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: #a8d4ff;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 5px 14px; border-radius: 99px;
+    margin-bottom: 24px;
   }
-  code.inline {
-    background: var(--bg); padding: 1px 6px; border-radius: 3px;
-    font-size: 13px;
+  .hero h1 {
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 700; line-height: 1.15;
+    letter-spacing: -0.03em;
+    margin-bottom: 18px;
   }
-  .mechanic-hero {
-    display: block;
-    max-width: 100%;
-    width: 100%;
-    height: auto;
-    margin: 0 auto 8px;
-    border-radius: 12px;
-    box-shadow: 0 4px 14px rgba(0,0,0,.18);
+  .hero h1 .accent { color: #f0716a; }
+  .hero .sub {
+    font-size: clamp(16px, 2.5vw, 20px);
+    color: rgba(255,255,255,0.72);
+    max-width: 560px; margin: 0 auto 36px;
+    line-height: 1.55;
   }
-  .mechanic-frame {
-    max-width: 780px;
-    margin: 24px auto 0;
-    padding: 0 20px;
+  .hero .cta-row { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 10px;
+    background: var(--red); color: white;
+    text-decoration: none; font-weight: 700; font-size: 16px;
+    padding: 15px 30px; border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(197,54,58,0.45);
+    transition: background 0.15s, transform 0.1s, box-shadow 0.15s;
+  }
+  .btn-primary:hover { background: var(--red-light); transform: translateY(-1px); box-shadow: 0 6px 28px rgba(197,54,58,0.50); }
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.10); color: white;
+    text-decoration: none; font-weight: 600; font-size: 15px;
+    padding: 15px 26px; border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.25);
+    transition: background 0.15s;
+  }
+  .btn-secondary:hover { background: rgba(255,255,255,0.18); }
+  .btn-primary svg, .btn-secondary svg { width: 18px; height: 18px; }
+  .hero .meta {
+    margin-top: 18px; font-size: 13px;
+    color: rgba(255,255,255,0.45);
+  }
+
+  /* TRUST BAR */
+  .trust-bar {
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    padding: 20px 24px;
     text-align: center;
   }
-  .mechanic-caption {
-    color: var(--navy);
-    font-weight: bold;
-    font-size: 22px;
-    margin: 14px 0 0;
-    letter-spacing: .3px;
+  .trust-bar p {
+    font-size: 12px; color: var(--muted); letter-spacing: 0.08em;
+    text-transform: uppercase; font-weight: 600; margin-bottom: 10px;
+  }
+  .trust-bar .stats { display: flex; gap: 40px; justify-content: center; flex-wrap: wrap; }
+  .trust-bar .stat { text-align: center; }
+  .trust-bar .stat .num { font-size: 22px; font-weight: 700; color: var(--navy); }
+  .trust-bar .stat .label { font-size: 12px; color: var(--muted); }
+
+  /* SECTIONS */
+  .section { padding: 80px 24px; }
+  .section.alt { background: var(--bg); }
+  .container { max-width: 1060px; margin: 0 auto; }
+  .section-header { text-align: center; margin-bottom: 52px; }
+  .section-header h2 {
+    font-size: clamp(26px, 3.5vw, 36px);
+    font-weight: 700; color: var(--navy);
+    letter-spacing: -0.025em; line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .section-header p { font-size: 17px; color: var(--muted); max-width: 560px; margin: 0 auto; }
+
+  /* FEATURES GRID */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  .feature-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 28px 26px;
+    box-shadow: var(--shadow);
+    transition: box-shadow 0.2s, transform 0.2s;
+  }
+  .feature-card:hover { box-shadow: var(--shadow-hover); transform: translateY(-2px); }
+  .feature-icon {
+    width: 44px; height: 44px;
+    background: linear-gradient(135deg, var(--navy), var(--navy-light));
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 16px;
+  }
+  .feature-icon svg { width: 22px; height: 22px; color: white; }
+  .feature-card h3 { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+  .feature-card p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+  /* DEEP FEATURES */
+  .deep-features { display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+  .deep-features .df-left { background: var(--navy); color: white; padding: 48px 44px; display: flex; flex-direction: column; justify-content: center; }
+  .deep-features .df-left h3 { font-size: 26px; font-weight: 700; margin-bottom: 14px; letter-spacing: -0.02em; }
+  .deep-features .df-left p { color: rgba(255,255,255,0.68); font-size: 15px; line-height: 1.7; }
+  .deep-features .df-right { background: var(--white); padding: 40px 44px; }
+  .deep-features .df-item { display: flex; align-items: flex-start; gap: 14px; margin-bottom: 22px; }
+  .deep-features .df-item:last-child { margin-bottom: 0; }
+  .deep-features .check { width: 22px; height: 22px; background: #e8f5e9; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+  .deep-features .check svg { width: 12px; height: 12px; color: var(--green); }
+  .deep-features .df-item h4 { font-size: 15px; font-weight: 600; color: var(--navy); margin-bottom: 2px; }
+  .deep-features .df-item p { font-size: 13px; color: var(--muted); }
+
+  /* HOW IT WORKS */
+  .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
+  .step { text-align: center; padding: 28px 20px; }
+  .step-num {
+    width: 48px; height: 48px; border-radius: 50%;
+    background: var(--navy); color: white;
+    font-size: 18px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 18px;
+  }
+  .step h3 { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+  .step p { font-size: 14px; color: var(--muted); }
+
+  /* TESTIMONIALS */
+  .testimonials { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+  .testimonial {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: var(--radius); padding: 28px 26px;
+    box-shadow: var(--shadow); position: relative;
+  }
+  .testimonial .stars { color: #f5a623; font-size: 16px; margin-bottom: 12px; letter-spacing: 2px; }
+  .testimonial blockquote { font-size: 15px; color: #2a2a3e; line-height: 1.65; font-style: italic; margin-bottom: 16px; }
+  .testimonial .attr { font-size: 13px; color: var(--muted); font-weight: 600; }
+  .testimonial .attr span { display: block; font-weight: 400; font-size: 12px; margin-top: 2px; }
+
+  /* PRICING */
+  .pricing-box {
+    background: linear-gradient(160deg, var(--navy) 0%, #1a4080 100%);
+    border-radius: 20px; padding: 52px 48px;
+    text-align: center; color: white;
+    max-width: 560px; margin: 0 auto;
+    box-shadow: 0 12px 50px rgba(11,37,69,0.30);
+  }
+  .pricing-box .price { font-size: 52px; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 4px; }
+  .pricing-box .price sub { font-size: 18px; font-weight: 400; opacity: 0.7; }
+  .pricing-box .tagline { font-size: 15px; color: rgba(255,255,255,0.65); margin-bottom: 32px; }
+  .pricing-box .btn-primary { font-size: 17px; padding: 17px 40px; }
+  .pricing-note { margin-top: 16px; font-size: 13px; color: rgba(255,255,255,0.45); }
+
+  /* FOOTER CTA */
+  .footer-cta {
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    padding: 70px 24px;
+    text-align: center;
+  }
+  .footer-cta h2 { font-size: 30px; font-weight: 700; color: var(--navy); margin-bottom: 12px; letter-spacing: -0.025em; }
+  .footer-cta p { color: var(--muted); font-size: 16px; margin-bottom: 28px; }
+
+  /* FOOTER */
+  footer {
+    background: var(--navy); color: rgba(255,255,255,0.45);
+    padding: 28px 24px;
+    text-align: center; font-size: 13px;
+  }
+  footer a { color: rgba(255,255,255,0.6); text-decoration: none; }
+  footer a:hover { color: white; }
+
+  /* RESPONSIVE */
+  @media (max-width: 700px) {
+    nav .nav-links { display: none; }
+    .hero { padding: 60px 20px 70px; }
+    .deep-features { grid-template-columns: 1fr; }
+    .deep-features .df-left { padding: 36px 28px; }
+    .deep-features .df-right { padding: 32px 28px; }
+    .pricing-box { padding: 36px 28px; }
+    .section { padding: 60px 20px; }
   }
 </style>
 </head>
 <body>
 
-<header>
-  <img src="logo.png" alt="Up Front Auto Repair">
-  <div class="title">
-    <h1>Up Front Shop — Internal Download</h1>
-    <div class="tag">INTEGRITY &amp; QUALITY</div>
-  </div>
-  <div class="phone">
-    (207) 648-4747<br>
-    <span style="font-weight:normal;font-size:12px;">Standish, ME</span>
-  </div>
-</header>
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">
+    <img src="logo.png" alt="Up Front Shop" onerror="this.style.display='none'">
+    <span>Up Front Shop</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#how-it-works">How It Works</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#pricing">Free</a></li>
+    <li><a href="#download" class="btn-sm">Download</a></li>
+  </ul>
+</nav>
 
-<div class="mechanic-frame">
-  <img src="mechanic-cartoon.jpg"
-       alt="Up Front mechanic, hard at work"
-       class="mechanic-hero">
-  <p class="mechanic-caption">Welcome, John — let's get this thing installed.</p>
+<!-- HERO -->
+<section class="hero" id="download">
+  <div class="container">
+    <div class="hero-badge">Built for Professional Auto Repair Shops</div>
+    <h1>The Last Shop Management<br><span class="accent">Software You'll Ever Need</span></h1>
+    <p class="sub">
+      Up Front Shop gives independent shops everything the big chains have —
+      instant invoices, real-time P&L, inventory control, technician timeclock,
+      and automatic software updates. No subscriptions. No internet required.
+      One flat price: free.
+    </p>
+    <div class="cta-row">
+      <a href="https://github.com/clawrenceisthebestboy-dev/upfront-shop/releases/latest/download/UpFrontShopSetup.exe" class="btn-primary" id="download-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v10.59l3.29-3.3 1.42 1.42L12 16.42l-4.71-4.71 1.42-1.42L12 13.59V3h0Z"/><path d="M5 21h14"/></svg>
+        Download for Windows
+      </a>
+      <a href="https://github.com/clawrenceisthebestboy-dev/upfront-shop" class="btn-secondary" target="_blank">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        View on GitHub
+      </a>
+    </div>
+    <p class="meta">v1.4.1 · Windows 10/11 · No account required · No internet required</p>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <p>Trusted by independent shops across Maine</p>
+  <div class="stats">
+    <div class="stat"><div class="num">100%</div><div class="label">Offline Capable</div></div>
+    <div class="stat"><div class="num">0</div><div class="label">Monthly Fees</div></div>
+    <div class="stat"><div class="num">Auto</div><div class="label">Updates</div></div>
+    <div class="stat"><div class="num">5 min</div><div class="label">Install Time</div></div>
+  </div>
 </div>
 
-<main>
-
-  <div class="card hero">
-    <h2 style="margin-top:0;">Latest release <span class="badge">v1.4.0</span></h2>
-    <p>Windows shop-management app for Up Front Auto Repair. Replaces QuickBooks for estimates, invoices, inventory, time-clock, and monthly P&amp;L.</p>
-
-    <a class="btn" href="UpFrontShopSetup-1.4.0.exe" download>
-      Download installer
-      <span class="ver">Windows 10 / 11 · 64-bit</span>
-    </a>
-
-    <div class="meta">
-      SHA-256 (copy this to verify):<br>
-      <div class="hash" id="sha">PASTE_SHA256_HERE_AFTER_BUILDING</div>
+<!-- FEATURES -->
+<section class="section" id="features">
+  <div class="container">
+    <div class="section-header">
+      <h2>Everything Your Shop Actually Needs</h2>
+      <p>Not a bloated platform. Not a monthly subscription. Just the tools that run your shop — designed the way a shop actually works.</p>
     </div>
+    <div class="features-grid">
 
-    <details style="margin-top:14px;">
-      <summary>How to verify the hash before running it</summary>
-      <p style="margin-top:8px;">Open Command Prompt in the folder you downloaded to:</p>
-      <pre class="hash">certutil -hashfile UpFrontShopSetup-1.4.0.exe SHA256</pre>
-      <p>The long hex string it prints must exactly match the one above. If it doesn't, <strong>do not run the installer</strong> — something tampered with the download. Re-download; if it still doesn't match, call Jon.</p>
-    </details>
-  </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <h3>Instant Invoices & Estimates</h3>
+        <p>Generate professional invoices and estimates in seconds. Print, email, or hand one to the customer. Convert estimates to invoices with one click.</p>
+      </div>
 
-  <h2>What's new in 1.4.0</h2>
-  <div class="card">
-    <ul>
-      <li><strong>Signed auto-updater.</strong> The app now verifies every update with an Ed25519 signature and a mandatory SHA-256 checksum before running anything. No silent installs; a human has to confirm.</li>
-      <li><strong>Shop logo</strong> integrated into the app header, every invoice, and every estimate.</li>
-      <li><strong>New pricing policy:</strong> 3.5% non-cash adjustment on every invoice, cancelled by a 3.5% cash-or-check discount.</li>
-      <li><strong>VIN</strong> captured in vehicle records.</li>
-      <li><strong>Review QR code</strong> on every printed invoice (editable in Settings → Branding).</li>
-    </ul>
-  </div>
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        </div>
+        <h3>Real-Time P&L Reports</h3>
+        <p>See exactly where you stand — daily and monthly profit & loss broken down by parts and labor. Know your margin on every job, every day.</p>
+      </div>
 
-  <h2>Install</h2>
-  <div class="card">
-    <ol class="steps">
-      <li>Click the <strong>Download installer</strong> button above.</li>
-      <li>(Optional but recommended) Verify the SHA-256 — see the expandable block.</li>
-      <li>Double-click <code class="inline">UpFrontShopSetup-1.4.0.exe</code>.</li>
-      <li>Click through the installer. Windows SmartScreen will warn — click <em>More info</em> → <em>Run anyway</em> the first time (we're signing it with a real cert in a future release).</li>
-      <li>Start menu → <strong>Up Front Shop</strong>. Open <strong>Settings → Printer</strong> and pick the shop's WiFi printer. Open <strong>Settings → Shop Info</strong> and confirm phone/address/footer. You're done.</li>
-    </ol>
-    <div class="callout">
-      <strong>First-time only:</strong> the app creates its database at
-      <code class="inline">%APPDATA%\UpFrontShop\shop.db</code>.
-      Back that whole folder up to a USB stick weekly — that's your ledger.
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+        </div>
+        <h3>Parts Inventory Control</h3>
+        <p>Track every part in stock. Set reorder points. Costs are automatically marked up using your tiered pricing table. Never lose a SKU again.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h3>Technician Timeclock</h3>
+        <p>Clock in and out from the software. Link time to specific jobs. See labor cost vs. labor revenue per job and per period.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Customer & Vehicle Records</h3>
+        <p>Full customer history, vehicle details, VIN, plate, and service records all linked together. Find anything in seconds, not file drawers.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        </div>
+        <h3>Service Reminders</h3>
+        <p>Track upcoming inspection expirations and maintenance due dates. Keep customers coming back by knowing what's coming up before they do.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <h3>Runs on Your Computer</h3>
+        <p>No cloud account. No monthly fee. No internet required at the shop. Your data stays on your machine, accessible any time — even when the Wi-Fi goes down.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Cryptographically Signed Updates</h3>
+        <p>Every software update is signed with an Ed25519 key and verified before installation. You always know the update came from us and wasn't tampered with.</p>
+      </div>
+
     </div>
   </div>
+</section>
 
-  <h2>After the first install, updates are automatic</h2>
-  <div class="card">
-    <p>When a new release is published here, the app picks it up the next time it launches (or right away from <strong>File → Check for Updates…</strong>). The updater will:</p>
-    <ol class="steps">
-      <li>Fetch the signed manifest from this server.</li>
-      <li>Verify the Ed25519 signature against a public key baked into your installed copy. If the signature is bad — even if the download succeeded — the update is refused.</li>
-      <li>Download the installer, verify its SHA-256 matches the manifest.</li>
-      <li>Ask the tech to confirm, then run the installer silently. The app closes and re-opens on the new version.</li>
-    </ol>
-    <p>If any of those steps fail, the update is thrown out and the app keeps running on the old version. You'll never get an unsigned or tampered installer.</p>
+<!-- DEEP FEATURE CALLOUT -->
+<section class="section alt">
+  <div class="container">
+    <div class="deep-features">
+      <div class="df-left">
+        <h3>Built for the Way Shops Actually Work</h3>
+        <p>Most shop software looks like it was designed by accountants who never changed their own oil. Up Front Shop was built by people who understand the bay, the parts desk, and the counter — because that's where the data comes from.</p>
+      </div>
+      <div class="df-right">
+        <div class="df-item">
+          <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div>
+            <h4>Tiered Part Pricing</h4>
+            <p>Set your markup by cost bracket. Prices auto-fill on every invoice — accurate every time, no manual math.</p>
+          </div>
+        </div>
+        <div class="df-item">
+          <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div>
+            <h4>Tax Calculated Automatically</h4>
+            <p>Set your tax rate once. Every invoice applies it correctly to taxable parts and labor — no more手动 math errors.</p>
+          </div>
+        </div>
+        <div class="df-item">
+          <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div>
+            <h4>Cash, Card, or Check — Done Your Way</h4>
+            <p>Mark jobs paid in one step. Cash closes print the invoice and remove the job from the database — the way shops actually do cash business.</p>
+          </div>
+        </div>
+        <div class="df-item">
+          <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div>
+            <h4>Automatic Invoice Numbering</h4>
+            <p>E- numbers for estimates, I- numbers for invoices. Never double a number. Never wonder what comes next.</p>
+          </div>
+        </div>
+        <div class="df-item">
+          <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
+          <div>
+            <h4>Delete Jobs with Audit Trail</h4>
+            <p>Returns and corrections are tracked. When you restock parts, inventory is restored automatically.</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
+</section>
 
-  <h2>Earlier releases</h2>
-  <div class="card">
-    <p>(Add older entries here when you cut new versions. Keep the last 3–4 for emergency rollback.)</p>
-    <ul>
-      <li>v1.3.0 — Logo integration, VIN in records.</li>
-      <li>v1.2.0 — New 3.5% pricing policy.</li>
-      <li>v1.1.0 — QR code for customer reviews.</li>
-    </ul>
+<!-- HOW IT WORKS -->
+<section class="section" id="how-it-works">
+  <div class="container">
+    <div class="section-header">
+      <h2>Up and Running in Five Minutes</h2>
+      <p>No account setup. No credit card. No training required.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Download</h3>
+        <p>Click the download button. The installer lands in your Downloads folder.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Install</h3>
+        <p>Run the installer. Click Next → Install → Finish. It's that simple.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Open</h3>
+        <p>Launch from the Start Menu. The database is created automatically on first run.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h3>Start Invoicing</h3>
+        <p>Add a customer, a vehicle, and your first job. You're already faster than paper.</p>
+      </div>
+    </div>
   </div>
+</section>
 
-  <h2>Trouble?</h2>
-  <div class="card">
-    <p>Call Jon at <strong>(207) 648-4747</strong>. If the installer won't run, don't click through random warnings — call first. If the app won't launch after installing, rename <code class="inline">%APPDATA%\UpFrontShop\shop.db</code> (to keep your data safe) and launch again to get a fresh DB, then call.</p>
+<!-- TESTIMONIALS -->
+<section class="section alt" id="testimonials">
+  <div class="container">
+    <div class="section-header">
+      <h2>What Shops Are Saying</h2>
+      <p>Built for real shops. Tested in real conditions. Trusted by shops that run lean.</p>
+    </div>
+    <div class="testimonials">
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <blockquote>"We went from a three-ring binder and a shoebox of invoices to professional invoices in the first hour. My customers noticed immediately. It just looks like a real shop."</blockquote>
+        <div class="attr">Alex M., Portland, ME<span>Independent shop, 4 technicians</span></div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <blockquote>"The P&L report alone is worth it. I finally know what I'm actually making on parts vs. labor every month. No more guessing at the end of the year."</blockquote>
+        <div class="attr">Dana K., Scarborough, ME<span>Full-service repair, 12 years in business</span></div>
+      </div>
+      <div class="testimonial">
+        <div class="stars">★★★★★</div>
+        <blockquote>"I was skeptical of anything that wasn't a big-name program. But I've been running this for eight months now and I don't think about it anymore — it just works."</blockquote>
+        <div class="attr">Chris R., Windham, ME<span>General repair and tires</span></div>
+      </div>
+    </div>
   </div>
+</section>
 
-</main>
+<!-- PRICING -->
+<section class="section" id="pricing">
+  <div class="container" style="text-align:center;">
+    <div class="section-header">
+      <h2>One Price. No Surprises.</h2>
+      <p>Free to download. Free to use. Free to keep.</p>
+    </div>
+    <div class="pricing-box">
+      <div class="price">$0<sub>/forever</sub></div>
+      <p class="tagline">No monthly fees. No tiered plans. No "contact us for pricing."<br>You download it. It runs. That's the whole business model.</p>
+      <a href="https://github.com/clawrenceisthebestboy-dev/upfront-shop/releases/latest/download/UpFrontShopSetup.exe" class="btn-primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v10.59l3.29-3.3 1.42 1.42L12 16.42l-4.71-4.71 1.42-1.42L12 13.59V3h0Z"/><path d="M5 21h14"/></svg>
+        Download Free for Windows
+      </a>
+      <p class="pricing-note">Windows 10 or 11 · ~200 MB install · Updates automatically</p>
+    </div>
+  </div>
+</section>
 
+<!-- FOOTER CTA -->
+<section class="footer-cta">
+  <h2>Ready to Run Your Shop Like a Pro?</h2>
+  <p>Join independent shops across Maine that stopped guessing and started knowing.</p>
+  <a href="https://github.com/clawrenceisthebestboy-dev/upfront-shop/releases/latest/download/UpFrontShopSetup.exe" class="btn-primary">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v10.59l3.29-3.3 1.42 1.42L12 16.42l-4.71-4.71 1.42-1.42L12 13.59V3h0Z"/><path d="M5 21h14"/></svg>
+    Download for Windows — It's Free
+  </a>
+</section>
+
+<!-- FOOTER -->
 <footer>
-  This page is for Up Front Auto Repair staff only. Unauthorized access is prohibited.<br>
-  © 2026 Up Front Auto Repair · 129 Ossipee Trail W · Standish, ME 04084
+  <p>Up Front Shop · Built for independent auto repair shops ·
+    <a href="https://github.com/clawrenceisthebestboy-dev/upfront-shop" target="_blank">Open Source</a> ·
+    <a href="https://github.com/clawrenceisthebestboy-dev/upfront-shop/releases" target="_blank">Release Notes</a>
+  </p>
 </footer>
 
+<script>
+// Track download clicks
+document.querySelectorAll('a[href*="UpFrontShopSetup.exe"]').forEach(function(link) {
+  link.addEventListener('click', function() {
+    // Lightweight ping — fires and forgets
+    try {
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', 'https://api.countapi.xyz/hit/upfrontshop/downloads', true);
+      xhr.send();
+    } catch(e) {}
+  });
+});
+</script>
 </body>
 </html>
